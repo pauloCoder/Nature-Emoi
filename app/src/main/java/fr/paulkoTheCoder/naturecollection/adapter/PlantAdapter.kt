@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import fr.paulkoTheCoder.naturecollection.MainActivity
 import fr.paulkoTheCoder.naturecollection.PlantModel
+import fr.paulkoTheCoder.naturecollection.PlantRepository
 import fr.paulkoTheCoder.naturecollection.R
 
 /***
@@ -61,6 +62,9 @@ class PlantAdapter(private val context : MainActivity,
         /*Récupération des informations de la plante*/
         val currentPlant = plantList[position]
 
+        //Récupération du repository
+        val repo = PlantRepository();
+
         /*Utiliser <glide> pour récupérer l'image à partir de son lien -> composant*/
         //Le context est une BDD interne contenant toutes les informations
         // contextuel de l'application : numéro de version...
@@ -78,6 +82,12 @@ class PlantAdapter(private val context : MainActivity,
             holder.starIcon.setImageResource(R.drawable.ic_unstar)
         }
 
+        //Rajouter une interaction sur l'étoile (liked ou pas)
+        holder.starIcon.setOnClickListener {
+
+            //Inverse si le bouton est liké ou non
+            currentPlant.liked = ! currentPlant.liked;
+        }
 
     }
 

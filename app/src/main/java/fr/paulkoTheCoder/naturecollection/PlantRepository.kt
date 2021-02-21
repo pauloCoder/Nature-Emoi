@@ -62,5 +62,7 @@ class PlantRepository
         })
     }
 
+    //Mettre à jour l'objet plante en base de données
+    fun updatePlant(plant : PlantModel) = dataBaseRef.child(plant.id).setValue(plant);
 
 }
